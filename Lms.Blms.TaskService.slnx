@@ -1,0 +1,11 @@
+﻿<Solution>
+    <Folder Name="/src/">
+        <Project Path="src/TaskServiceDomain/TaskServiceDomain.csproj" />
+        <Project Path="src/TaskServiceGrpc/TaskServiceGrpc.csproj" />
+        <Project Path="src/TaskServiceInfrastructure/TaskServiceInfrastructure.csproj" />
+        <Project Path="src/TaskServiceKafka/TaskServiceKafka.csproj" />
+    </Folder>
+    <Folder Name="/tests/">
+        <Project Path="tests\TaskService.Tests.csproj" />
+    </Folder>
+</Solution>
