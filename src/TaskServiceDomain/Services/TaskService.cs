@@ -1,4 +1,4 @@
-﻿using TaskServiceDomain.Interfaces;
+using TaskServiceDomain.Interfaces;
 using TaskServiceDomain.Models;
 using Task = TaskServiceDomain.Models.Task;
 using TaskStatus = TaskServiceDomain.Models.TaskStatus;
@@ -31,12 +31,10 @@ public class TaskService : ITaskService
             description: description,
             deadline: deadline,
             status: TaskStatus.ACTUAL,
-            history: new List<TaskHistory>
-            {
-                new TaskHistory(createdByUserId, HistoryType.CREATED, now),
-            },
             createdAt: now,
             updatedAt: now);
+
+        task.History.Add(new TaskHistory(createdByUserId, HistoryType.CREATED, now));
 
         if (metadata != null)
         {
@@ -62,7 +60,9 @@ public class TaskService : ITaskService
         return await UpdateTaskStatusAsync(taskId, TaskStatus.COMPLETED, completedByUserId, cancellationToken);
     }
 
-    Task<IEnumerable<Task>> ITaskService.GetTasksWithFiltersAsync(TaskStatus? status, CancellationToken cancellationToken)
+    Task<IEnumerable<Task>> ITaskService.GetTasksWithFiltersAsync(
+        TaskStatus? status,
+        CancellationToken cancellationToken)
     {
         return GetTasksWithFiltersAsync(status, cancellationToken);
     }
@@ -110,7 +110,9 @@ public class TaskService : ITaskService
         return await _taskRepository.GetByIdAsync(id, cancellationToken);
     }
 
-    public async Task<IEnumerable<TaskHistory>> GetTaskHistoryAsync(long taskId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<TaskHistory>> GetTaskHistoryAsync(
+        long taskId,
+        CancellationToken cancellationToken = default)
     {
         Task? task = await _taskRepository.GetByIdAsync(taskId, cancellationToken);
         if (task == null)

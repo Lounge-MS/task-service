@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 
 namespace TaskServiceDomain.Models;
 
@@ -16,7 +16,6 @@ public class Task
         string description,
         DateTime deadline,
         TaskStatus status,
-        IList<TaskHistory> history,
         DateTime createdAt,
         DateTime updatedAt,
         string? metadataJson = null)
@@ -26,7 +25,7 @@ public class Task
         Description = description;
         Deadline = deadline;
         Status = status;
-        History = history;
+        History = new List<TaskHistory>();
         CreatedAt = createdAt;
         UpdatedAt = updatedAt;
         MetadataJson = metadataJson;
@@ -42,7 +41,7 @@ public class Task
 
     public TaskStatus Status { get; set; }
 
-    public IList<TaskHistory> History { get; }
+    public IList<TaskHistory> History { get; } = new List<TaskHistory>();
 
     public DateTime CreatedAt { get; set; }
 
