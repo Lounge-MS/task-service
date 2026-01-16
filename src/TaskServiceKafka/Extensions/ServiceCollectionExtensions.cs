@@ -3,7 +3,7 @@ using TaskServiceDomain.Interfaces;
 using TaskServiceDomain.Services;
 using TaskServiceInfrastructure.Infrastructure.Repositories;
 
-namespace TaskService.Extensions;
+namespace TaskServiceKafka.Extensions;
 
 public static class ServiceCollectionExtensions
 {
